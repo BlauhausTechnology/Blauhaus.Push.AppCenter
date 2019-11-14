@@ -1,7 +1,7 @@
 ﻿using Blauhaus.Tests.Helpers;
-using HttpClient.Core.Service;
+using HttpClientService.Core.Service;
 
-namespace Blauhaus.PushNotifications.Tests.Mocks
+namespace Blauhaus.Push.Tests.Mocks
 {
     public class HttpClientServiceMockBuilder : BaseMockBuilder<HttpClientServiceMockBuilder, IHttpClientService>
     {

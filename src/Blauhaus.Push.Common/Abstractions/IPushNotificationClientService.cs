@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace Blauhaus.PushNotifications.Common.Abstractions
+namespace Blauhaus.Push.Common.Abstractions
 {
     public interface IPushNotificationClientService
     {

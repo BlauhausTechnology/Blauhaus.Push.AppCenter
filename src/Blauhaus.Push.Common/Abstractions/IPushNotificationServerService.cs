@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Blauhaus.Common.Config.AppCenter;
 using Blauhaus.Common.Config.AppCenter.Server;
-using Blauhaus.PushNotifications.Common.Notifications;
+using Blauhaus.Push.Common.Notifications;
 
-namespace Blauhaus.PushNotifications.Common.Abstractions
+namespace Blauhaus.Push.Common.Abstractions
 {
     public interface IPushNotificationServerService
     {

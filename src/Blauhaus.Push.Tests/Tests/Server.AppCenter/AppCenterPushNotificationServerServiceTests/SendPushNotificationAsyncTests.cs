@@ -1,12 +1,11 @@
-﻿using System.Threading.Tasks;
-using Blauhaus.PushNotifications.Server.AppCenter.Service;
-using Blauhaus.PushNotifications.Tests.Mocks;
+﻿using Blauhaus.Push.Server.AppCenter.Service;
+using Blauhaus.Push.Tests.Mocks;
 using Blauhaus.Tests.Helpers;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace Blauhaus.PushNotifications.Tests.Tests.Server.AppCenter.AppCenterPushNotificationServerServiceTests
+namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationServerServiceTests
 {
     public class SendPushNotificationAsyncTests : BaseUnitTest<AppCenterPushNotificationServerService>
     {

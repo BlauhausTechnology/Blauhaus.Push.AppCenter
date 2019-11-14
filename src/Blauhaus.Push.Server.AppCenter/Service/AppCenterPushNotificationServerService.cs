@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Blauhaus.Common.Config.AppCenter;
 using Blauhaus.Common.Config.AppCenter.Server;
-using Blauhaus.PushNotifications.Common.Abstractions;
-using Blauhaus.PushNotifications.Common.Notifications;
-using HttpClient.Core.Request;
-using HttpClient.Core.Service;
+using Blauhaus.Push.Common.Abstractions;
+using Blauhaus.Push.Common.Notifications;
+using HttpClientService.Core.Request;
+using HttpClientService.Core.Service;
 using Microsoft.Extensions.Logging;
 
-namespace Blauhaus.PushNotifications.Server.AppCenter.Service
+namespace Blauhaus.Push.Server.AppCenter.Service
 {
     public class AppCenterPushNotificationServerService : IPushNotificationServerService
     {

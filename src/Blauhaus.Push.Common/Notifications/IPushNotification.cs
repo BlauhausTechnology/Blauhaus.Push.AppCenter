@@ -1,6 +1,6 @@
 ﻿using Blauhaus.Common.ValueObjects.RuntimePlatforms;
 
-namespace Blauhaus.PushNotifications.Common.Notifications
+namespace Blauhaus.Push.Common.Notifications
 {
     public interface IPushNotification
     {

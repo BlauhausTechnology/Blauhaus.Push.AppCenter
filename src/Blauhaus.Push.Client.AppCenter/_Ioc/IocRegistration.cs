@@ -1,8 +1,8 @@
 ﻿using Blauhaus.Ioc.Abstractions;
-using Blauhaus.PushNotifications.Client.AppCenter.Service;
-using Blauhaus.PushNotifications.Common.Abstractions;
+using Blauhaus.Push.Client.AppCenter.Service;
+using Blauhaus.Push.Common.Abstractions;
 
-namespace Blauhaus.PushNotifications.Client.AppCenter._Ioc
+namespace Blauhaus.Push.Client.AppCenter._Ioc
 {
     public static class IocRegistration
     {

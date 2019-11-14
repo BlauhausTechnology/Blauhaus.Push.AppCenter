@@ -1,8 +1,8 @@
-﻿using Blauhaus.PushNotifications.Common.Notifications;
+﻿using Blauhaus.Push.Common.Notifications;
 using Blauhaus.Tests.Helpers;
 using NUnit.Framework;
 
-namespace Blauhaus.PushNotifications.Tests.Tests.Common.PushNotificationsTests
+namespace Blauhaus.Push.Tests.Tests.Common.PushNotificationsTests
 {
     public class ToJsonStringTests: BaseUnitTest<PushNotification>
     {
