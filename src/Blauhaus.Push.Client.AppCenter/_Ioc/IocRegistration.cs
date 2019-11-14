@@ -6,7 +6,7 @@ namespace Blauhaus.PushNotifications.Client.AppCenter._Ioc
 {
     public static class IocRegistration
     {
-        public static IIocService RegisterPushNotificationsClient(this IIocService iocService)
+        public static IIocService RegisterAppCenterPushNotificationsClient(this IIocService iocService)
         {
             iocService.RegisterImplementation<IPushNotificationClientService, AppCenterPushNotificationClientService>();
             return iocService;
