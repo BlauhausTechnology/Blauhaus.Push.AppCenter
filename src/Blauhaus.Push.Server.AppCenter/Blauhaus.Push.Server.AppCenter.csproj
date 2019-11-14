@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LanguageVersion>8.0</LanguageVersion>
     <NullableContextOptions>enable</NullableContextOptions>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -22,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19554-01" PrivateAssets="All"/> <!--to enable sourcelink-->
     <PackageReference Include="Blauhaus.Common.Config" Version="0.3.0" />
     <PackageReference Include="Blauhaus.HttpClientService" Version="0.5.1" />
   </ItemGroup>
