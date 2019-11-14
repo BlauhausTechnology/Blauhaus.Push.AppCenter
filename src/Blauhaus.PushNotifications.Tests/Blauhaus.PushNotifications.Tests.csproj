@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LanguageVersion>8.0</LanguageVersion>
+    <NullableContextOptions>enable</NullableContextOptions>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blauhaus.Tests.Helpers" Version="0.2.7" />
+    <PackageReference Include="nunit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blauhaus.PushNotifications.Client.AppCenter\Blauhaus.PushNotifications.Client.AppCenter.csproj" />
+    <ProjectReference Include="..\Blauhaus.PushNotifications.Common\Blauhaus.PushNotifications.Common.csproj" />
+    <ProjectReference Include="..\Blauhaus.PushNotifications.Server.AppCenter\Blauhaus.PushNotifications.Server.AppCenter.csproj" />
+  </ItemGroup>
+
+</Project>
