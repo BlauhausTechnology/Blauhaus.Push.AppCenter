@@ -27,17 +27,17 @@ namespace Blauhaus.PushNotifications.Tests.Tests.Server.AppCenter.AppCenterPushN
                 Mock.Of<ILogger>());
         }
 
-        [Test]
-        public async Task SHOULD()
-        {
+        //[Test]
+        //public async Task SHOULD()
+        //{
 
-            //Arrange
-
-
-            //Act
+        //    //Arrange
 
 
-            //Assert
-        }
+        //    //Act
+
+
+        //    //Assert
+        //}
     }
 }

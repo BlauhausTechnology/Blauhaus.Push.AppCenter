@@ -16,15 +16,18 @@
     <WarningsAsErrors />
   </PropertyGroup>
 
-
   <ItemGroup>
-    <PackageReference Include="Blauhaus.Common.Config" Version="0.3.0" />
-    <PackageReference Include="Blauhaus.Ioc.Abstractions" Version="0.6.2" />
-    <PackageReference Include="Microsoft.AppCenter.Push" Version="2.6.1" />
+    <Folder Include="Config\" />
+    <Folder Include="_Ioc\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blauhaus.PushNotifications.Common\Blauhaus.PushNotifications.Common.csproj" />
+    <PackageReference Include="Blauhaus.Common.Config" Version="0.3.0" />
+    <PackageReference Include="Blauhaus.HttpClientService" Version="0.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blauhaus.Push.Common\Blauhaus.Push.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,10 +16,12 @@ jobs:
         node ./scripts/getversion.js
      - name: Build NuGet Package
        run: |
-        dotnet build ./src/Blauhaus.Common.sln --configuration Release
-        dotnet pack ./src/Blauhaus.Common.ValueObjects/Blauhaus.Common.ValueObjects.csproj -p:PackageVersion=${VERSION_NAME} --no-build --output ./ --configuration Release 
-        dotnet pack ./src/Blauhaus.Common.Config/Blauhaus.Common.Config.csproj -p:PackageVersion=${VERSION_NAME} --no-build --output ./ --configuration Release 
+        dotnet build ./src/Blauhaus.Push.sln --configuration Release
+        dotnet pack ./src/Blauhaus.Push.Client.AppCenter/Blauhaus.Push.Client.AppCenter.csproj -p:PackageVersion=${VERSION_NAME} --no-build --output ./ --configuration Release 
+        dotnet pack ./src/Blauhaus.Push.Common/Blauhaus.Push.Common.csproj -p:PackageVersion=${VERSION_NAME} --no-build --output ./ --configuration Release 
+        dotnet pack ./src/Blauhaus.Push.Server.AppCenter/Blauhaus.Push.Server.AppCenter.csproj -p:PackageVersion=${VERSION_NAME} --no-build --output ./ --configuration Release 
      - name: Deploy NuGet Package
        run:  |
-        dotnet nuget push /home/runner/work/Blauhaus.Common/Blauhaus.Common/Blauhaus.Common.ValueObjects.${VERSION_NAME}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-        dotnet nuget push /home/runner/work/Blauhaus.Common/Blauhaus.Common/Blauhaus.Common.Config.${VERSION_NAME}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/Blauhaus.Push.Client.AppCenter.${VERSION_NAME}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/Blauhaus.Push.Common.${VERSION_NAME}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/Blauhaus.Push.Server.AppCenter.${VERSION_NAME}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
