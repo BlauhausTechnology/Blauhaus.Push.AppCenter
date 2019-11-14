@@ -22,9 +22,5 @@ jobs:
         dotnet pack ./src/Blauhaus.Push.Server.AppCenter/Blauhaus.Push.Server.AppCenter.csproj -p:PackageVersion=${VERSION_NAME} --no-build --output ./ --configuration Release 
      - name: Deploy NuGet Package
        run:  |
-        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/Blauhaus.Push.Client.AppCenter.${VERSION_NAME}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/Blauhaus.Push.Client.AppCenter.${VERSION_NAME}.snupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/Blauhaus.Push.Common.${VERSION_NAME}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/Blauhaus.Push.Common.${VERSION_NAME}.snupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/Blauhaus.Push.Server.AppCenter.${VERSION_NAME}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/Blauhaus.Push.Server.AppCenter.${VERSION_NAME}.snupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json -SkipDuplicate
+        dotnet nuget push /home/runner/work/Blauhaus.Push/Blauhaus.Push/*.snupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json -SkipDuplicate
