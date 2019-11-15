@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Blauhaus.Common.Config.AppCenter.Server;
+using Blauhaus.Common.ValueObjects.RuntimePlatforms;
 using Blauhaus.Push.Common.Abstractions;
 using Blauhaus.Push.Common.Notifications;
 using HttpClientService.Core.Request;
@@ -28,7 +29,7 @@ namespace Blauhaus.Push.Server.AppCenter.Service
         {
             if(!appCenterConfig.AppNames.TryGetValue(pushNotification.TargetDevicePlatform, out var appNamePlatform))
             {
-               //log
+                _logger.LogWarning("App Center app name not found for " + pushNotification.TargetDevicePlatform.Value);
                return;
             }
 
@@ -47,8 +48,7 @@ namespace Blauhaus.Push.Server.AppCenter.Service
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "");
-                //log
+                _logger.LogError(e, "Failed to send push notification request to app center");
             }
         }
 
