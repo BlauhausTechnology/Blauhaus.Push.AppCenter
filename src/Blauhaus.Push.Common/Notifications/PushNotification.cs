@@ -8,8 +8,7 @@ namespace Blauhaus.Push.Common.Notifications
     {
         //targeting
         public string TargetUserId { get; set; }
-        public List<string> TargetDeviceIds { get; set; } = new List<string>();
-        public RuntimePlatform TargetDevicePlatform { get; set; }
+        public List<PushNotificationTarget> DeviceTargets { get; set; }
 
         //content
         public string Name { get; set; }
@@ -22,23 +21,12 @@ namespace Blauhaus.Push.Common.Notifications
         public int BadgeCount { get; set; } = 0;
         public string TargetId { get; set; } = string.Empty;
 
-        public string ToAppCenterJsonString()
+        public string ToAppCenterJsonString(string targetDeviceId)
         {
             var appCenterString = new StringBuilder().Append("{")
                 .Append("\"notification_target\": {")
-                .Append("\"type\": \"devices_target\", \"devices\": [");
-
-            for (var i = 0; i < TargetDeviceIds.Count; i++)
-            {
-                appCenterString.Append("\"").Append(TargetDeviceIds[i]).Append("\"").Append(",");
-            }
-
-            if (TargetDeviceIds.Count > 0)
-            {
-                appCenterString.Length -= 1;
-            }
-            
-            appCenterString.Append("]},");
+                .Append("\"type\": \"devices_target\", \"devices\": [\"")
+                .Append(targetDeviceId).Append("\"]},");
             appCenterString.Append("\"notification_content\": {")
                 .Append("\"name\": \"").Append(Name).Append("\", ")
                 .Append("\"title\": \"").Append(Title).Append("\", ")

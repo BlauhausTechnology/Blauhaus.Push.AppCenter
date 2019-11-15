@@ -18,7 +18,10 @@ namespace Blauhaus.Push.Tests.Tests.Common.PushNotificationsTests
         public void SHOULD_add_TargetDeviceId_as_device_target()
         {
             //Arrange
-            Sut.TargetDeviceIds = new List<string> {"targetDeviceId" };
+            Sut.DeviceTargets = new List<PushNotificationTarget>
+            {
+                new PushNotificationTarget{TargetDeviceId = "targetDeviceId"}
+            };
             Sut.Name = "NAME";
             Sut.Title = "TITLE";
             Sut.Body = "BODY";
@@ -28,17 +31,22 @@ namespace Blauhaus.Push.Tests.Tests.Common.PushNotificationsTests
             Sut.BadgeCount = 111;
 
             //Act
-            var result = Sut.ToAppCenterJsonString();
+            var result = Sut.ToAppCenterJsonString("targetDeviceId");
 
             //Assert
             Assert.That(result, Is.EqualTo("{\"notification_target\": {\"type\": \"devices_target\", \"devices\": [\"targetDeviceId\"]},\"notification_content\": {\"name\": \"NAME\", \"title\": \"TITLE\", \"body\": \"BODY\", \"custom_data\": {\"notificationType\": \"Chat\", \"badgeCount\": \"111\", \"targetId\": \"ID\", \"sound\": \"SOUND\"}}}"));
         }
 
         [Test]
-        public void IF_there_are_multiple_devices_SHOULD_add_them_all()
+        public void IF_there_are_multiple_devices_SHOULD_add_requested_one_only()
         {
             //Arrange
-            Sut.TargetDeviceIds = new List<string> {"targetDeviceId1", "targetDeviceId2", "targetDeviceId3" };
+            Sut.DeviceTargets = new List<PushNotificationTarget>
+            {
+                new PushNotificationTarget{TargetDeviceId = "targetDeviceId1"},
+                new PushNotificationTarget{TargetDeviceId = "targetDeviceId2"},
+                new PushNotificationTarget{TargetDeviceId = "targetDeviceId3"}
+            };
             Sut.Name = "NAME";
             Sut.Title = "TITLE";
             Sut.Body = "BODY";
@@ -48,10 +56,10 @@ namespace Blauhaus.Push.Tests.Tests.Common.PushNotificationsTests
             Sut.BadgeCount = 111;
 
             //Act
-            var result = Sut.ToAppCenterJsonString();
+            var result = Sut.ToAppCenterJsonString("targetDeviceId2");
 
             //Assert
-            Assert.That(result, Is.EqualTo("{\"notification_target\": {\"type\": \"devices_target\", \"devices\": [\"targetDeviceId1\",\"targetDeviceId2\",\"targetDeviceId3\"]},\"notification_content\": {\"name\": \"NAME\", \"title\": \"TITLE\", \"body\": \"BODY\", \"custom_data\": {\"notificationType\": \"Chat\", \"badgeCount\": \"111\", \"targetId\": \"ID\", \"sound\": \"SOUND\"}}}"));
+            Assert.That(result, Is.EqualTo("{\"notification_target\": {\"type\": \"devices_target\", \"devices\": [\"targetDeviceId2\"]},\"notification_content\": {\"name\": \"NAME\", \"title\": \"TITLE\", \"body\": \"BODY\", \"custom_data\": {\"notificationType\": \"Chat\", \"badgeCount\": \"111\", \"targetId\": \"ID\", \"sound\": \"SOUND\"}}}"));
         }
 
       

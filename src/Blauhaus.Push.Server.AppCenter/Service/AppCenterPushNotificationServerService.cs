@@ -27,29 +27,34 @@ namespace Blauhaus.Push.Server.AppCenter.Service
 
         public async Task SendPushNotificationAsync(IPushNotification pushNotification, IAppCenterServerConfig appCenterConfig)
         {
-            if(!appCenterConfig.AppNames.TryGetValue(pushNotification.TargetDevicePlatform, out var appNamePlatform))
+
+            foreach (var target in pushNotification.DeviceTargets)
             {
-                _logger.LogWarning("App Center app name not found for " + pushNotification.TargetDevicePlatform.Value);
-               return;
+                if(!appCenterConfig.AppNames.TryGetValue(target.TargetDevicePlatform, out var appNameForPlatform))
+                {
+                    _logger.LogWarning("App Center app name not found for " + target.TargetDevicePlatform.Value);
+                    return;
+                }
+
+                var organizationName = appCenterConfig.OrganizationName;
+                var appName = appNameForPlatform;
+                var apiEndpoint = $"https://api.appcenter.ms/v0.1/apps/{organizationName}/{appName}/push/notifications";
+                var payload = pushNotification.ToAppCenterJsonString(target.TargetDeviceId);
+                var apiToken = appCenterConfig.ApiToken;
+
+                var request = new HttpRequestWrapper<string>(apiEndpoint, payload)
+                    .WithRequestHeader("X-API-Token", apiToken);
+
+                try
+                {
+                    await _httpClientService.PostAsync<string, IHttpRequestWrapper<string>>(request, CancellationToken.None);
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, "Failed to send push notification request to app center");
+                }
             }
 
-            var organizationName = appCenterConfig.OrganizationName;
-            var appName = appNamePlatform;
-            var apiEndpoint = $"https://api.appcenter.ms/v0.1/apps/{organizationName}/{appName}/push/notifications";
-            var payload = pushNotification.ToAppCenterJsonString();
-            var apiToken = appCenterConfig.ApiToken;
-
-            var request = new HttpRequestWrapper<string>(apiEndpoint, payload)
-                .WithRequestHeader("X-API-Token", apiToken);
-
-            try
-            {
-                await _httpClientService.PostAsync<string, IHttpRequestWrapper<string>>(request, CancellationToken.None);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to send push notification request to app center");
-            }
         }
 
     }

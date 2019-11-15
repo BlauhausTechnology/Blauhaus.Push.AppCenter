@@ -5,11 +5,9 @@ namespace Blauhaus.Push.Common.Notifications
 {
     public interface IPushNotification
     {
-        string NotificationType { get; set; }
 
         string TargetUserId { get; set; }
-        List<string> TargetDeviceIds { get; set; }
-        RuntimePlatform TargetDevicePlatform { get; set; }
+        List<PushNotificationTarget> DeviceTargets { get; set; }
 
         string Name { get; set; } 
         string Title { get; set; } 
@@ -17,7 +15,8 @@ namespace Blauhaus.Push.Common.Notifications
         string Sound { get; set; }
         int BadgeCount { get; set; }
         string TargetId { get; set; }
+        string NotificationType { get; set; }
         
-        string ToAppCenterJsonString();
+        string ToAppCenterJsonString(string targetDeviceId);
     }
 }

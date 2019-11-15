@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Blauhaus.Push.Server.AppCenter.Service;
 using Blauhaus.Push.Tests.Mocks;
@@ -52,7 +53,11 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
             var notification = new PushNotification
             {
                 Title = "Test",
-                TargetDevicePlatform = RuntimePlatform.UWP
+                DeviceTargets = new List<PushNotificationTarget>
+                {
+                    new PushNotificationTarget{TargetDevicePlatform = RuntimePlatform.UWP, TargetDeviceId = "1"},
+                    new PushNotificationTarget{TargetDevicePlatform = RuntimePlatform.iOS, TargetDeviceId = "2"},
+                }
             };
 
 
@@ -63,7 +68,11 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
             _mockHttpClientService.Mock.Verify(x => x.PostAsync<string, IHttpRequestWrapper<string>>(It.Is<IHttpRequestWrapper<string>>(y => 
                 y.Endpoint == "https://api.appcenter.ms/v0.1/apps/organizationName/uwpAppName/push/notifications" &&
                 y.RequestHeaders["X-API-Token"] == "apiToken" &&
-                y.Request == notification.ToAppCenterJsonString()), CancellationToken.None));
+                y.Request == notification.ToAppCenterJsonString("1")), CancellationToken.None));
+            _mockHttpClientService.Mock.Verify(x => x.PostAsync<string, IHttpRequestWrapper<string>>(It.Is<IHttpRequestWrapper<string>>(y => 
+                y.Endpoint == "https://api.appcenter.ms/v0.1/apps/organizationName/iosAppName/push/notifications" &&
+                y.RequestHeaders["X-API-Token"] == "apiToken" &&
+                y.Request == notification.ToAppCenterJsonString("2")), CancellationToken.None));
         }
     }
 }
