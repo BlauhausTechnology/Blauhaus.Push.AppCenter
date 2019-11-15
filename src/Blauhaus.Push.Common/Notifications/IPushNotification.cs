@@ -7,7 +7,7 @@ namespace Blauhaus.Push.Common.Notifications
     {
 
         string TargetUserId { get; set; }
-        List<PushNotificationTarget> DeviceTargets { get; set; }
+        List<PushNotificationTarget> DeviceTargets { get; set; } 
 
         string Name { get; set; } 
         string Title { get; set; } 
