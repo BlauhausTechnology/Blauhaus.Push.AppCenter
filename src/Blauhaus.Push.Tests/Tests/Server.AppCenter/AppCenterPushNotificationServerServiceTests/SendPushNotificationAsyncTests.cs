@@ -23,7 +23,7 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
         {
             return new AppCenterPushNotificationServerService(
                 _mockHttpClientService.Object,
-                Mock.Of<ILogger>());
+                Mock.Of<ILogger<AppCenterPushNotificationServerService>>());
         }
 
         //[Test]

@@ -13,11 +13,11 @@ namespace Blauhaus.Push.Server.AppCenter.Service
     public class AppCenterPushNotificationServerService : IPushNotificationServerService
     {
         private readonly IHttpClientService _httpClientService;
-        private readonly ILogger _logger;
+        private readonly ILogger<AppCenterPushNotificationServerService> _logger;
 
         public AppCenterPushNotificationServerService(
             IHttpClientService httpClientService,
-            ILogger logger)
+            ILogger<AppCenterPushNotificationServerService> logger)
         {
             _httpClientService = httpClientService;
             _logger = logger;
