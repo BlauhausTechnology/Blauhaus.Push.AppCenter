@@ -3,10 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Blauhaus.Common.Config.AppCenter.Server;
 using Blauhaus.Common.ValueObjects.RuntimePlatforms;
+using Blauhaus.HttpClientService.Request;
+using Blauhaus.HttpClientService.Service;
 using Blauhaus.Push.Common.Abstractions;
 using Blauhaus.Push.Common.Notifications;
-using HttpClientService.Core.Request;
-using HttpClientService.Core.Service;
 using Microsoft.Extensions.Logging;
 
 namespace Blauhaus.Push.Server.AppCenter.Service

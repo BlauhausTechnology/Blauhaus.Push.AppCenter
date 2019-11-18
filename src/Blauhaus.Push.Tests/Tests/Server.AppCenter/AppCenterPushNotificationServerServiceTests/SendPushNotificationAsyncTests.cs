@@ -10,8 +10,8 @@ using NUnit.Framework;
 using System.Threading.Tasks;
 using Blauhaus.Common.Config.AppCenter.Server;
 using Blauhaus.Common.ValueObjects.RuntimePlatforms;
+using Blauhaus.HttpClientService.Request;
 using Blauhaus.Push.Common.Notifications;
-using HttpClientService.Core.Request;
 
 namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationServerServiceTests
 {
