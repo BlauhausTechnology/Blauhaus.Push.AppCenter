@@ -16,7 +16,6 @@ namespace Blauhaus.Push.Common.Notifications
         int BadgeCount { get; set; }
         string TargetId { get; set; }
         string NotificationType { get; set; }
-        
-        string ToAppCenterJsonString(string targetDeviceId);
+        Dictionary<string, string> CustomData { get; }
     }
 }

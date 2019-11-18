@@ -7,7 +7,9 @@ using Blauhaus.HttpClientService.Request;
 using Blauhaus.HttpClientService.Service;
 using Blauhaus.Push.Common.Abstractions;
 using Blauhaus.Push.Common.Notifications;
+using Blauhaus.Push.Server.AppCenter.Dtos;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Blauhaus.Push.Server.AppCenter.Service
 {
@@ -39,15 +41,15 @@ namespace Blauhaus.Push.Server.AppCenter.Service
                 var organizationName = appCenterConfig.OrganizationName;
                 var appName = appNameForPlatform;
                 var apiEndpoint = $"https://api.appcenter.ms/v0.1/apps/{organizationName}/{appName}/push/notifications";
-                var payload = pushNotification.ToAppCenterJsonString(target.TargetDeviceId);
+                var dto = new AppCenterPushDto(pushNotification);
                 var apiToken = appCenterConfig.ApiToken;
-
-                var request = new HttpRequestWrapper<string>(apiEndpoint, payload)
+                var json = JsonConvert.SerializeObject(dto);
+                var request = new HttpRequestWrapper<AppCenterPushDto>(apiEndpoint, dto)
                     .WithRequestHeader("X-API-Token", apiToken);
 
                 try
                 {
-                    await _httpClientService.PostAsync<string, IHttpRequestWrapper<string>>(request, CancellationToken.None);
+                    await _httpClientService.PostAsync<AppCenterPushDto, string>(request, CancellationToken.None);
                 }
                 catch (Exception e)
                 {
