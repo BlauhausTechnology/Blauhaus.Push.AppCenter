@@ -67,13 +67,13 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
             await Sut.SendPushNotificationAsync(notification, new TestConfig());
 
             //Assert
-            _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushDto, string>(It.Is<IHttpRequestWrapper<AppCenterPushDto>>(y => 
+            _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushRequestDto, AppCenterPushResponseDto>(It.Is<IHttpRequestWrapper<AppCenterPushRequestDto>>(y => 
                 y.Request.NotificationTarget.Devices.FirstOrDefault(a => a == "1") != null &&
                 y.Request.NotificationTarget.Devices.FirstOrDefault(b => b == "2") == null &&
                 y.Request.NotificationTarget.Devices.FirstOrDefault(c => c == "3") == null &&
                 y.Endpoint == "https://api.appcenter.ms/v0.1/apps/organizationName/uwpAppName/push/notifications" &&
                 y.RequestHeaders["X-API-Token"] == "apiToken"), CancellationToken.None));
-            _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushDto, string>(It.Is<IHttpRequestWrapper<AppCenterPushDto>>(y => 
+            _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushRequestDto, AppCenterPushResponseDto>(It.Is<IHttpRequestWrapper<AppCenterPushRequestDto>>(y => 
                 y.Request.NotificationTarget.Devices.FirstOrDefault(a => a == "1") == null &&
                 y.Request.NotificationTarget.Devices.FirstOrDefault(b => b == "2") != null &&
                 y.Request.NotificationTarget.Devices.FirstOrDefault(c => c == "3") != null &&
@@ -101,7 +101,7 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
             await Sut.SendPushNotificationAsync(notification, new TestConfig());
 
             //Assert
-            _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushDto, string>(It.Is<IHttpRequestWrapper<AppCenterPushDto>>(y => 
+            _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushRequestDto, AppCenterPushResponseDto>(It.Is<IHttpRequestWrapper<AppCenterPushRequestDto>>(y => 
                 y.Request.NotificationTarget.Type == "devices_target"  &&
                 y.Request.NotificationContent.Name == "Name" &&
                 y.Request.NotificationContent.Title == "Title" &&
@@ -132,7 +132,7 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
             await Sut.SendPushNotificationAsync(notification, new TestConfig());
 
             //Assert
-            _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushDto, string>(It.Is<IHttpRequestWrapper<AppCenterPushDto>>(y => 
+            _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushRequestDto, AppCenterPushResponseDto>(It.Is<IHttpRequestWrapper<AppCenterPushRequestDto>>(y => 
                 y.Request.NotificationContent.CustomData["sound"] == "default" &&
                 y.Request.NotificationContent.CustomData["badgeCount"] == "12" &&
                 y.Request.NotificationContent.CustomData["notificationType"] == "Type" &&

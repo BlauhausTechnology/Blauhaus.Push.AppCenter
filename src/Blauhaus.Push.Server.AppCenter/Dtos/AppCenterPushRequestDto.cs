@@ -6,14 +6,14 @@ using Newtonsoft.Json;
 
 namespace Blauhaus.Push.Server.AppCenter.Dtos
 {
-    public class AppCenterPushDto
+    public class AppCenterPushRequestDto
     {
 
-        public AppCenterPushDto()
+        public AppCenterPushRequestDto()
         {
         }
 
-        public AppCenterPushDto(IPushNotification pushNotification, RuntimePlatform targetTargetDevicePlatform)
+        public AppCenterPushRequestDto(IPushNotification pushNotification, RuntimePlatform targetTargetDevicePlatform)
         {
             foreach (var deviceTarget in pushNotification.DeviceTargets)
             {
