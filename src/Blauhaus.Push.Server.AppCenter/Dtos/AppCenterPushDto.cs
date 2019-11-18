@@ -15,11 +15,6 @@ namespace Blauhaus.Push.Server.AppCenter.Dtos
 
         public AppCenterPushDto(IPushNotification pushNotification, RuntimePlatform targetTargetDevicePlatform)
         {
-            NotificationTarget = new NotificationTarget
-            {
-                Type = pushNotification.NotificationType,
-            };
-
             foreach (var deviceTarget in pushNotification.DeviceTargets)
             {
                 if (deviceTarget.TargetDevicePlatform.Equals(targetTargetDevicePlatform))
@@ -37,17 +32,16 @@ namespace Blauhaus.Push.Server.AppCenter.Dtos
             };
         }
 
-
-        [JsonProperty("notification_content")]
-        public NotificationContent NotificationContent { get; set; }
+        
         [JsonProperty("notification_target")]
-        public NotificationTarget NotificationTarget { get; set; }
+        public NotificationTarget NotificationTarget { get; set; } = new NotificationTarget();
+        [JsonProperty("notification_content")]
+        public NotificationContent NotificationContent { get; set; } = new NotificationContent();
     }
 
     public class NotificationTarget
     {
-        [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonProperty("type")] public string Type { get; set; } = "devices_target";
 
         [JsonProperty("devices")]
         public List<string> Devices { get; set; } = new List<string>();

@@ -90,7 +90,6 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
             {
                 Name = "Name",
                 Title = "Title",
-                NotificationType = "NotificationType",
                 Body = "Body",
                 DeviceTargets = new List<PushNotificationTarget>
                 {
@@ -103,7 +102,7 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
 
             //Assert
             _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushDto, string>(It.Is<IHttpRequestWrapper<AppCenterPushDto>>(y => 
-                y.Request.NotificationTarget.Type == "NotificationType"  &&
+                y.Request.NotificationTarget.Type == "devices_target"  &&
                 y.Request.NotificationContent.Name == "Name" &&
                 y.Request.NotificationContent.Title == "Title" &&
                 y.Request.NotificationContent.Body == "Body"), CancellationToken.None));
