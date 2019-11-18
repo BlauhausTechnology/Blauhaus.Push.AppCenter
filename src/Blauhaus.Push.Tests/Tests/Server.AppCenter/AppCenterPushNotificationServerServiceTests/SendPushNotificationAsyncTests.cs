@@ -47,7 +47,7 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
 
 
         [Test]
-        public async Task SHOULD_call_http_client_using_correct_endpoint_and_appname_for_target_platform()
+        public async Task SHOULD_call_http_client_using_correct_endpoint_and_appname_and_Device_Ids_for_each_target_platform()
         {
 
             //Arrange
@@ -58,6 +58,7 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
                 {
                     new PushNotificationTarget{TargetDevicePlatform = RuntimePlatform.UWP, TargetDeviceId = "1"},
                     new PushNotificationTarget{TargetDevicePlatform = RuntimePlatform.iOS, TargetDeviceId = "2"},
+                    new PushNotificationTarget{TargetDevicePlatform = RuntimePlatform.iOS, TargetDeviceId = "3"},
                 }
             };
 
@@ -67,9 +68,15 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
 
             //Assert
             _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushDto, string>(It.Is<IHttpRequestWrapper<AppCenterPushDto>>(y => 
+                y.Request.NotificationTarget.Devices.FirstOrDefault(a => a == "1") != null &&
+                y.Request.NotificationTarget.Devices.FirstOrDefault(b => b == "2") == null &&
+                y.Request.NotificationTarget.Devices.FirstOrDefault(c => c == "3") == null &&
                 y.Endpoint == "https://api.appcenter.ms/v0.1/apps/organizationName/uwpAppName/push/notifications" &&
                 y.RequestHeaders["X-API-Token"] == "apiToken"), CancellationToken.None));
             _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushDto, string>(It.Is<IHttpRequestWrapper<AppCenterPushDto>>(y => 
+                y.Request.NotificationTarget.Devices.FirstOrDefault(a => a == "1") == null &&
+                y.Request.NotificationTarget.Devices.FirstOrDefault(b => b == "2") != null &&
+                y.Request.NotificationTarget.Devices.FirstOrDefault(c => c == "3") != null &&
                 y.Endpoint == "https://api.appcenter.ms/v0.1/apps/organizationName/iosAppName/push/notifications" &&
                 y.RequestHeaders["X-API-Token"] == "apiToken"), CancellationToken.None));
         }
@@ -96,7 +103,6 @@ namespace Blauhaus.Push.Tests.Tests.Server.AppCenter.AppCenterPushNotificationSe
 
             //Assert
             _mockHttpClientService.Mock.Verify(x => x.PostAsync<AppCenterPushDto, string>(It.Is<IHttpRequestWrapper<AppCenterPushDto>>(y => 
-                y.Request.NotificationTarget.Devices[0] == "1" &&
                 y.Request.NotificationTarget.Type == "NotificationType"  &&
                 y.Request.NotificationContent.Name == "Name" &&
                 y.Request.NotificationContent.Title == "Title" &&

@@ -41,9 +41,8 @@ namespace Blauhaus.Push.Server.AppCenter.Service
                 var organizationName = appCenterConfig.OrganizationName;
                 var appName = appNameForPlatform;
                 var apiEndpoint = $"https://api.appcenter.ms/v0.1/apps/{organizationName}/{appName}/push/notifications";
-                var dto = new AppCenterPushDto(pushNotification);
+                var dto = new AppCenterPushDto(pushNotification, target.TargetDevicePlatform);
                 var apiToken = appCenterConfig.ApiToken;
-                var json = JsonConvert.SerializeObject(dto);
                 var request = new HttpRequestWrapper<AppCenterPushDto>(apiEndpoint, dto)
                     .WithRequestHeader("X-API-Token", apiToken);
 

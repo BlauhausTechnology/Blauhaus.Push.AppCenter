@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Blauhaus.Common.ValueObjects.RuntimePlatforms;
 using Blauhaus.Push.Common.Notifications;
 using Newtonsoft.Json;
 
@@ -12,7 +13,7 @@ namespace Blauhaus.Push.Server.AppCenter.Dtos
         {
         }
 
-        public AppCenterPushDto(IPushNotification pushNotification)
+        public AppCenterPushDto(IPushNotification pushNotification, RuntimePlatform targetTargetDevicePlatform)
         {
             NotificationTarget = new NotificationTarget
             {
@@ -21,7 +22,10 @@ namespace Blauhaus.Push.Server.AppCenter.Dtos
 
             foreach (var deviceTarget in pushNotification.DeviceTargets)
             {
-                NotificationTarget.Devices.Add(deviceTarget.TargetDeviceId);
+                if (deviceTarget.TargetDevicePlatform.Equals(targetTargetDevicePlatform))
+                {
+                    NotificationTarget.Devices.Add(deviceTarget.TargetDeviceId);
+                }
             }
 
             NotificationContent = new NotificationContent
