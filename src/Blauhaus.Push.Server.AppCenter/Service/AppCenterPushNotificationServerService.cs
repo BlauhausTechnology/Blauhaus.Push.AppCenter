@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Blauhaus.Common.Config.AppCenter.Server;
 using Blauhaus.Common.ValueObjects.RuntimePlatforms;
+using Blauhaus.HttpClientService.Abstractions;
 using Blauhaus.HttpClientService.Request;
 using Blauhaus.HttpClientService.Service;
 using Blauhaus.Push.Common.Abstractions;
