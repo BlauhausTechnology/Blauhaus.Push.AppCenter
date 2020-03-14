@@ -1,4 +1,5 @@
-﻿using Blauhaus.HttpClientService.Service;
+﻿using Blauhaus.HttpClientService.Abstractions;
+using Blauhaus.HttpClientService.Service;
 using Blauhaus.Tests.Helpers;
 
 namespace Blauhaus.Push.Tests.Mocks
