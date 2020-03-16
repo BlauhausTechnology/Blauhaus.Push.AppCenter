@@ -26,7 +26,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" /> <!--to enable sourcelink-->
     <PackageReference Include="Blauhaus.Common.Config" Version="0.9.7" />
-    <PackageReference Include="Blauhaus.HttpClientService" Version="0.9.8" />
+    <PackageReference Include="Blauhaus.HttpClientService" Version="0.9.9" />
   </ItemGroup>
 
   <ItemGroup>
