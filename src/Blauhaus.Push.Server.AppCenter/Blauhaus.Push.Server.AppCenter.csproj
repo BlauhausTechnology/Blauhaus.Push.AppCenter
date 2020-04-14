@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blauhaus.Push.Common\Blauhaus.Push.Common.csproj" />
+    <ProjectReference Include="..\Blauhaus.Push.Common\Blauhaus.Push.Common.AppCenter.csproj" />
   </ItemGroup>
 
 </Project>

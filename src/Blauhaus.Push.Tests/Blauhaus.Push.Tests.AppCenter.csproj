@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blauhaus.Push.Client.AppCenter\Blauhaus.Push.Client.AppCenter.csproj" />
-    <ProjectReference Include="..\Blauhaus.Push.Common\Blauhaus.Push.Common.csproj" />
+    <ProjectReference Include="..\Blauhaus.Push.Common\Blauhaus.Push.Common.AppCenter.csproj" />
     <ProjectReference Include="..\Blauhaus.Push.Server.AppCenter\Blauhaus.Push.Server.AppCenter.csproj" />
   </ItemGroup>
 

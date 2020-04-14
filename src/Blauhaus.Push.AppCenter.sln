@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blauhaus.Push.Client.AppCenter", "Blauhaus.Push.Client.AppCenter\Blauhaus.Push.Client.AppCenter.csproj", "{886C7BE9-1286-4470-851F-FCDD461FF74D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blauhaus.Push.Common", "Blauhaus.Push.Common\Blauhaus.Push.Common.csproj", "{985DD8EF-4BA6-4688-849B-9ACB396027E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blauhaus.Push.Common.AppCenter", "Blauhaus.Push.Common\Blauhaus.Push.Common.AppCenter.csproj", "{985DD8EF-4BA6-4688-849B-9ACB396027E6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blauhaus.Push.Server.AppCenter", "Blauhaus.Push.Server.AppCenter\Blauhaus.Push.Server.AppCenter.csproj", "{6E4558F4-7785-489B-93CD-A9A35A9DA333}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blauhaus.Push.Tests", "Blauhaus.Push.Tests\Blauhaus.Push.Tests.csproj", "{EB3B2D82-FFF6-4ECA-9126-A7558B5E0CF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blauhaus.Push.Tests.AppCenter", "Blauhaus.Push.Tests\Blauhaus.Push.Tests.AppCenter.csproj", "{EB3B2D82-FFF6-4ECA-9126-A7558B5E0CF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
